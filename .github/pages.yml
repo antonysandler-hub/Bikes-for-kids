@@ -1,0 +1,28 @@
+# Documentation: https://docs.github.com/en/actions/deployment/github-pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        run: |
+          mkdir -p public
+          mv * public/
+          tar -c -v -f artifact-name.tar *
+        with:
+          path: ./public/
+requested path:
